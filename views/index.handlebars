@@ -1,0 +1,41 @@
+<head><title>Teste</title><head>
+<body>
+  <h1>Bem vindo, {{user.nome}}!</h1>
+
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Seus contatos</h3>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Data de cadastro</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each contatos}}
+            <tr>
+              <th scope=row>{{this.id}}</th>
+              <td>{{this.nome}}</td>
+              <td>{{this.email}}</td>
+              <td>{{this.datacadastro}}</td>
+              <td>
+                <a href="/contatos/show?id={{this.id}}" class="btn btn-primary" aria-label="Center Align">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </a>
+            </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>

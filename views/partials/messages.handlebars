@@ -1,0 +1,39 @@
+{{#if success}}
+  <div class="alert alert-success">
+    <strong>Sucesso!</strong>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
+    {{#each success}}
+      {{this}}<br/>
+    {{/each}}
+  </div>
+{{/if}}
+
+{{#if info}}
+  <div class="alert alert-info">
+    <strong>Informação: </strong>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
+    {{#each info}}
+      {{this}}<br/>
+    {{/each}}
+  </div>
+{{/if}}
+
+{{#if warning}}
+  <div class="alert alert-warning">
+    <strong>Atenção!</strong>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
+    {{#each warning}}
+      {{this}}<br/>
+    {{/each}}
+  </div>
+{{/if}}
+
+{{#if error}}
+  <div class="alert alert-danger">
+    <strong>Erro geral!</strong>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
+    {{#each error}}
+      {{this}}<br/>
+    {{/each}}
+  </div>
+{{/if}}

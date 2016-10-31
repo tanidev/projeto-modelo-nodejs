@@ -1,0 +1,28 @@
+{
+  "name": "projetomodelo",
+  "version": "1.0.0",
+  "description": "Projeto base para desenvolvimento",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tani Araújo",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.0.0",
+    "express-load": "^1.1.15",
+    "express-session": "^1.14.1",
+    "moment": "^2.15.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.24.6"
+  }
+}
