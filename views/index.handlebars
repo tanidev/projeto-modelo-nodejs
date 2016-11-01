@@ -1,4 +1,3 @@
-<head><title>Teste</title><head>
 <body>
   <h1>Bem vindo, {{user.nome}}!</h1>
 
@@ -24,7 +23,7 @@
               <th scope=row>{{this.id}}</th>
               <td>{{this.nome}}</td>
               <td>{{this.email}}</td>
-              <td>{{this.datacadastro}}</td>
+              <td>{{this.dataCadastroFormat}}</td>
               <td>
                 <a href="/contatos/show?id={{this.id}}" class="btn btn-primary" aria-label="Center Align">
                   <span class="glyphicon glyphicon-search" aria-hidden="true"></span>

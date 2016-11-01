@@ -1,5 +1,7 @@
+var moment = require("moment");
+
 module.exports = function(sequelize, DataTypes) {
-  var Contato = sequelize.define('contatos', {
+  var Contato = sequelize.define("contatos", {
         id: {
           type:DataTypes.UUID,
           primaryKey: true,
@@ -27,6 +29,14 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING
         }
       }, {
+        instanceMethods: {
+          aniversarioFormat: function() {
+            return moment(this.aniversario).format("DD/MM/YYYY");
+          },
+          dataCadastroFormat: function() {
+            return moment(this.datacadastro).format("DD/MM/YYYY HH:mm");
+          }
+        },
         classMethods: {
           associate: function(models) {
             Contato.belongsTo(models.usuarios, {

@@ -2,8 +2,22 @@ var models = require("../models");
 var moment = require("moment");
 
 exports.search = function(req,res) {
-  req.flash("info", "Nenhum usuário foi encontrado!");
-  res.redirect("/");
+  models.contatos.findOne({
+    where: {
+      nome: {
+        $iLike: req.body.field + "%"
+      }
+    }
+  }).then(function(contato) {
+    if(contato) {
+      req.flash("info", "Contato encontrado!");
+      res.redirect("/contatos/show?id=" + contato.id);
+    } else {
+      req.flash("info", "Contato não encontrado!");
+      res.redirect("/");
+    }
+  });
+
 }
 
 exports.show = function(req, res){
