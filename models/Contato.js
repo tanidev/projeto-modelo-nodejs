@@ -3,9 +3,9 @@ var moment = require("moment");
 module.exports = function(sequelize, DataTypes) {
   var Contato = sequelize.define("contatos", {
         id: {
-          type:DataTypes.UUID,
+          type:DataTypes.INTEGER,
           primaryKey: true,
-          defaultValue: DataTypes.UUIDV4
+          autoIncrement: true
         },
         nome: {
           type: DataTypes.STRING

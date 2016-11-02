@@ -16,7 +16,8 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 
 //require handlebars
-var exphbs = require("express-handlebars");
+var expressHandlebars = require("express-handlebars");
+var expressHandlebarsExtend = require("express-handlebars-extend");
 
 //require passport to login
 var passport = require("passport")
@@ -28,7 +29,8 @@ var app = express();
 // require("./db/testPostgres.js");
 
 //configure handlebars
-app.engine("handlebars", exphbs({defaultLayout: "main"}));
+var handlebarsInstance = expressHandlebarsExtend(expressHandlebars.create({defaultLayout: 'main'}));
+app.engine("handlebars", handlebarsInstance.engine);
 app.set("view engine", "handlebars");
 
 //static content

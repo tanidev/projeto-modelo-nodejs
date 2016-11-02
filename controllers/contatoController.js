@@ -1,24 +1,4 @@
 var models = require("../models");
-var moment = require("moment");
-
-exports.search = function(req,res) {
-  models.contatos.findOne({
-    where: {
-      nome: {
-        $iLike: req.body.field + "%"
-      }
-    }
-  }).then(function(contato) {
-    if(contato) {
-      req.flash("info", "Contato encontrado!");
-      res.redirect("/contatos/show?id=" + contato.id);
-    } else {
-      req.flash("info", "Contato não encontrado!");
-      res.redirect("/");
-    }
-  });
-
-}
 
 exports.show = function(req, res){
   console.log(req.query.id);
@@ -27,6 +7,27 @@ exports.show = function(req, res){
       usuario: req.user
     }
   }).then(function(contato) {
-    res.render("contatos/show", {contato: contato, moment: moment});
+    console.log(contato);
+    res.render("contatos/show", {contato: contato});
   });
-};
+}
+
+exports.create = function(req, res) {
+  res.render("contatos/create");
+}
+
+exports.save = function(req, res) {
+
+  var contato = models.contatos.build(req.body);
+  contato.usuario_id = req.user.id;
+  
+  contato.save()
+            .then(function() {
+              req.flash("info", "Contato: " + contato.nome + " cadastrado com sucesso!");
+              res.redirect("/");
+            })
+            .catch(function(error) {
+              req.flash("error", "Não foi possivel cadastrar esse contato");
+              res.redirect("/contatos/create");
+            });
+}
