@@ -19,7 +19,14 @@
   {{else}}
     <h1>Usuario não encontrado!</h1>
   {{/if}}
-  <a href="/" class="btn btn-sm btn-primary">Voltar para contatos</a>
+  <a href="/" class="btn btn-sm btn-primary">
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+    Voltar para contatos
+  </a>
+  <a href="/contatos/delete/{{contato.id}}" class="btn btn-sm btn-danger">
+    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    Excluir
+  </a>
 </body>
 
 <!-- FIX Dynamic Layout -->

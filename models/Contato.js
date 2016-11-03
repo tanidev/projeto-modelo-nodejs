@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
           associate: function(models) {
             Contato.belongsTo(models.usuarios, {
-              foreignKey: "usuario_id", as: "usuario"
+              foreignKey: "usuario_id"
             });
           }
         }

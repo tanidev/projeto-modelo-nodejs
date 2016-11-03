@@ -6,7 +6,10 @@ module.exports = function(app) {
           .get(contatoController.create)
           .post(contatoController.save)
 
-  app.route("/contatos/show")
+  app.route("/contatos/delete/:id")
+          .get(contatoController.delete);
+
+  app.route("/contatos/show/:id")
           .get(contatoController.show);
 
 };
