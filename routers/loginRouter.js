@@ -24,7 +24,11 @@ module.exports = function(app) {
             })(req, res, next);
           });
 
-    app.route("/logout")
-            .get(loginController.logout);
+  app.route("/logout")
+          .get(loginController.logout);
+
+  app.route("/signup")
+          .get(loginController.signup)
+          .post(loginController.save);
 
 };

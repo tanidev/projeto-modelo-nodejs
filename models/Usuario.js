@@ -1,11 +1,11 @@
-var bcrypt = require("bcrypt-nodejs");
+var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
   var Usuario = sequelize.define('usuarios', {
         id: {
-          type:DataTypes.UUID,
+          type:DataTypes.INTEGER,
           primaryKey: true,
-          defaultValue: DataTypes.UUIDV4
+          autoIncrement: true
         },
         nome: {
           type: DataTypes.STRING
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       }, {
         instanceMethods: {
           generateHash: function(password) {
-            return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+            return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
           },
           validPassword: function(password) {
             return bcrypt.compareSync(password, this.senha);

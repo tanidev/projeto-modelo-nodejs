@@ -18,9 +18,6 @@ CREATE TABLE usuarios
   PRIMARY KEY (id)
 );
 
-INSERT INTO usuarios (nome, email, site, dataCadastro, senha)
-  VALUES('Estanislau Araújo', 'tani.webdesigner@gmail.com', 'https://github.com/tanidev', now(), '$2a$08$AyPxzp5Q6yvu6r9ecWSiKuqMUWMyPjxzX9PwXQhB5FCtDov/ZylNS');
-
 CREATE SEQUENCE contatos_seq;
 
 CREATE TABLE contatos
@@ -37,8 +34,5 @@ CREATE TABLE contatos
   PRIMARY KEY(id),
   FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
 );
-
-INSERT INTO contatos (nome, email, aniversario, telefoneCelular, usuario_id)
-  VALUES('Aline Rocha', 'alinerochaa2@hotmail.com', '1996-03-08','11 99930-9374', CURRVAL('usuarios_seq'));
 
 COMMIT;

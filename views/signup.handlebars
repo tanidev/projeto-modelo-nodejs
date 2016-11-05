@@ -1,0 +1,95 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projeto Modelo - Criar conta</title>
+  <!-- Bootstrap -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="col-md-12">
+      <div class="modal-dialog" style="margin-bottom:0">
+          <div class="modal-content">
+              <div class="panel-heading">
+                  <h1 class="panel-title"><center>Criar uma conta</center></h1>
+              </div>
+              <div class="panel-body">
+                  <form class="form-horizontal" action="/signup" method="post">
+                      <fieldset>
+                        <div class="form-group {{#if errors.nome}} has-error {{/if}}">
+                          <label for="nome" class="control-label col-sm-2">Nome</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nome" name="nome"
+                              placeholder="Nome completo" value="{{usuario.nome}}" autofocus required>
+                              {{#if errors.nome}}
+                                <span class="help-block">{{errors.nome.msg}}</span>
+                              {{/if}}
+                          </div>
+                        </div>
+
+                        <div class="form-group {{#if errors.email}} has-error {{/if}}">
+                          <label for="email" class="control-label col-sm-2">E-mail</label>
+                          <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email"
+                              placeholder="E-mail para acesso" value="{{usuario.email}}" required>
+                              {{#if errors.email}}
+                                <span class="help-block">{{errors.email.msg}}</span>
+                              {{/if}}
+                          </div>
+                        </div>
+
+                        <div class="form-group {{#if errors.site}} has-error {{/if}}">
+                          <label for="site" class="control-label col-sm-2">Site</label>
+                          <div class="col-sm-10">
+                            <input type="url" class="form-control" id="site" name="site"
+                              placeholder="http://example.com" value="{{usuario.site}}">
+                              {{#if errors.site}}
+                                <span class="help-block">{{errors.site.msg}}</span>
+                              {{/if}}
+                          </div>
+                        </div>
+
+                        <div class="form-group {{#if errors.password}} has-error {{/if}}">
+                          <label for="password" class="control-label col-sm-2">Senha</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" name="password"
+                              placeholder="Digite sua senha" required>
+                              {{#if errors.password}}
+                                <span class="help-block">{{errors.password.msg}}</span>
+                              {{/if}}
+                          </div>
+                        </div>
+
+                        <div class="form-group {{#if errors.passwordconfirm}} has-error {{/if}}">
+                          <label for="site" class="control-label col-sm-2">Confirmar senha</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="passwordconfirm" name="passwordconfirm"
+                              placeholder="Confirme sua senha" required>
+                              {{#if errors.passwordconfirm}}
+                                <span class="help-block">{{errors.passwordconfirm.msg}}</span>
+                              {{/if}}
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="control-label col-sm-2"></div>
+                          <div class="col-sm-10">
+                          <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            Criar conta
+                          </button>
+                          &nbsp;
+                          <a href="/login" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Voltar
+                          </a>
+                          </div>
+                        </div>
+                      </fieldset>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
