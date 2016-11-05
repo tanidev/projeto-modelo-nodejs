@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING
         },
         datacadastro: {
-          type: DataTypes.DATE
+          type: DataTypes.DATE,
+          default: sequelize.NOW
         },
         aniversario: {
           type: DataTypes.DATEONLY
@@ -30,9 +31,6 @@ module.exports = function(sequelize, DataTypes) {
         }
       }, {
         instanceMethods: {
-          aniversarioFormat: function() {
-            return moment(this.aniversario).format("DD/MM/YYYY");
-          },
           dataCadastroFormat: function() {
             return moment(this.datacadastro).format("DD/MM/YYYY HH:mm");
           }
@@ -46,5 +44,8 @@ module.exports = function(sequelize, DataTypes) {
         }
       });
 
+  Contato.__proto__.aniversarioFormat = function() {
+    return moment(this.aniversario).format("DD/MM/YYYY");
+  }
   return Contato;
 };

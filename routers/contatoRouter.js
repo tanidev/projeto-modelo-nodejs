@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.route("/contatos/delete/:id")
           .get(contatoController.delete);
 
-  app.route("/contatos/show/:id")
+  app.route("/show/:id")
           .get(contatoController.show);
 
 };

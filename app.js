@@ -20,7 +20,10 @@ var expressHandlebars = require("express-handlebars");
 var expressHandlebarsExtend = require("express-handlebars-extend");
 
 //require passport to login
-var passport = require("passport")
+var passport = require("passport");
+
+//require express-validator
+var expressValidator = require("express-validator");
 
 //init app
 var app = express();
@@ -53,6 +56,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(require("./middlewares/login"));
 app.set("passport", passport);
+
+//configure expressValidator
+var moment = require("moment");
+app.use(expressValidator({
+  customValidators: {
+    isDate: function(value) {
+        return moment(value, "DD/MM/YYYY").isValid();
+    }
+  }
+}));
 
 //load controllers and routes
 load("controllers").then("routers").into(app);
