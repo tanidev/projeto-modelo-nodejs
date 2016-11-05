@@ -42,6 +42,7 @@ exports.save = function(req, res) {
                 res.status(200).redirect("/");
               })
               .catch(function(error) {
+                console.log(error);
                 req.flash("error", "Não foi possivel cadastrar esse contato");
                 res.status(500).redirect("/contatos/form", {create: true});
               });
