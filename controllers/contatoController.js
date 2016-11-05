@@ -35,9 +35,11 @@ exports.save = function(req, res) {
   if(!contatoValidator(req,res)) {
     var contato = models.contatos.build(req.body);
     contato.usuario_id = req.user.id;
+
     //FIX Date
-    contato.aniversario = moment(contato.aniversario).format("YYYY-MM-DD");
-    
+    var dateSplit = req.body.aniversario.split("/");
+    contato.aniversario = new Date(dateSplit[2], dateSplit[1], dateSplit[0]);
+
     contato.save()
               .then(function(contato) {
                 req.flash("success", "Contato: " + contato.nome + " cadastrado com sucesso!");
