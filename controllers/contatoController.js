@@ -69,6 +69,11 @@ exports.update = function(req, res) {
         usuario_id: req.user.id
       }
     }).then(function(contato) {
+
+      //FIX Date
+      var dateSplit = req.body.aniversario.split("/");
+      req.body.aniversario = new Date(dateSplit[2], dateSplit[1], dateSplit[0]);
+
       return contato.update(req.body);
     }).then(function(contato) {
       req.flash("success", "Contato: " + contato.nome + " atualizado com sucesso!");
