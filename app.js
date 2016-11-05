@@ -32,7 +32,16 @@ var app = express();
 // require("./db/testPostgres.js");
 
 //configure handlebars
-var handlebarsInstance = expressHandlebarsExtend(expressHandlebars.create({defaultLayout: 'main'}));
+var handlebarsInstance = expressHandlebarsExtend(expressHandlebars.create({
+  defaultLayout: 'main',
+  helpers: {
+    formatDate: function(date, format) {
+      var moment = require("moment");
+      return moment(date).format(format);
+    }
+  }
+}));
+
 app.engine("handlebars", handlebarsInstance.engine);
 app.set("view engine", "handlebars");
 
@@ -58,10 +67,10 @@ app.use(require("./middlewares/login"));
 app.set("passport", passport);
 
 //configure expressValidator
-var moment = require("moment");
 app.use(expressValidator({
   customValidators: {
     isDate: function(value) {
+        var moment = require("moment");
         return moment(value, "DD/MM/YYYY").isValid();
     }
   }

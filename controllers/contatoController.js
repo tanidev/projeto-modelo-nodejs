@@ -1,4 +1,5 @@
 var models = require("../models");
+var moment = require("moment");
 
 exports.show = function(req, res){
   models.contatos.findOne({
@@ -6,14 +7,25 @@ exports.show = function(req, res){
       id: req.params.id,
       usuario_id: req.user.id
     }
-  }).then(function(value) {
-    console.log(value);
-    res.render("show", {contato: value});
+  }).then(function(contato) {
+    res.render("contatos/show", {contato: contato});
   });
 }
 
 exports.create = function(req, res) {
-  res.render("contatos/create");
+  res.render("contatos/form", {create: true});
+}
+
+exports.edit = function(req,res) {
+  models.contatos.findOne({
+    where: {
+      id: req.params.id,
+      usuario_id: req.user.id
+    }
+  }).then(function(contato) {
+    contato.aniversario = moment(contato.aniversario).format("DD/MM/YYYY");
+    res.render("contatos/form", {contato: contato});
+  });
 }
 
 exports.save = function(req, res) {
@@ -31,19 +43,40 @@ exports.save = function(req, res) {
               })
               .catch(function(error) {
                 req.flash("error", "Não foi possivel cadastrar esse contato");
-                res.redirect("/contatos/create");
+                res.redirect("/contatos/form", {create: true});
               });
   } else {
-
-    // var errors = req.validationErrors();
-    //
-    // errors.forEach(function(e) {
-    //   req.flash("warning", e.param + ":" + e.msg);
-    // })
-
-    res.render("contatos/create", {contato: req.body, errors: req.validationErrors(true)});
+    res.render("contatos/form", {contato: req.body, errors: req.validationErrors(true), create:true});
   }
 
+
+}
+
+exports.update = function(req, res) {
+
+  var contatoValidator = require("../validators/contatoValidator");
+
+  if(!contatoValidator(req,res)) {
+
+    models.contatos.findOne({
+      where: {
+        id: req.params.id,
+        usuario_id: req.user.id
+      }
+    }).then(function(contato) {
+      return contato.update(req.body);
+    }).then(function(contato) {
+      req.flash("success", "Contato: " + contato.nome + " atualizado com sucesso!");
+      res.redirect("/");
+    })
+    .catch(function(error) {
+      req.flash("error", "Não foi possivel atualizar esse contato");
+      res.redirect("/contatos/form/", {contato: req.body});
+    });
+
+  } else {
+    res.render("contatos/form", {contato: req.body, errors: req.validationErrors(true)});
+  }
 
 }
 

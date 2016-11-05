@@ -16,6 +16,7 @@ var config = {
             options: {
                 host: "localhost",
                 dialect: "postgres",
+                timezone: "America/Sao_Paulo",
                 define: {
                   timestamps: false
                 },

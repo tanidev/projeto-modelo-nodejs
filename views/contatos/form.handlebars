@@ -1,57 +1,71 @@
 <body>
 
-  <h1><center>Criar novo contato<center></h1>
+  {{#if create}}
+    <h1><center>Criar novo contato<center></h1>
+  {{else}}
+    <h1><center>Atualizar contato<center></h1>
+  {{/if}}
   <hr/>
-  <form class="form-horizontal" action="/contatos/create" method="post">
-    <div class="form-group">
+  <form class="form-horizontal" action="{{#if create}}/contatos/create{{else}}/contatos/edit/{{contato.id}}{{/if}}" method="post">
+    <div class="form-group {{#if errors.nome}} has-error {{/if}}">
       <label for="nome" class="control-label col-sm-2">Nome</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="nome" name="nome"
-          placeholder="Nome do contato" autofocus required>
+          placeholder="Nome do contato" value="{{contato.nome}}" autofocus required>
           {{#if errors.nome}}
-            <div class="alert alert-warning" role="alert">{{errors.nome.msg}}</div>
+            <span class="help-block">{{errors.nome.msg}}</span>
           {{/if}}
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{#if errors.email}} has-error {{/if}}">
       <label for="email" class="control-label col-sm-2">E-mail</label>
       <div class="col-sm-10">
         <input type="email" class="form-control" id="email" name="email"
-          placeholder="examplo@exemplo.com" required>
+          placeholder="examplo@exemplo.com" value="{{contato.email}}" required>
           {{#if errors.email}}
-            <div class="alert alert-warning" role="alert">{{errors.email.msg}}</div>
+            <span class="help-block">{{errors.email.msg}}</span>
           {{/if}}
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{#if errors.aniversario}} has-error {{/if}}">
       <label for="aniversario" class="control-label col-sm-2">Data de aniversário</label>
       <div class="col-sm-10">
         <input type="text" class="form-control aniversario" id="aniversario" name="aniversario"
-          placeholder="dd/mm/aaaa" required>
+          placeholder="dd/mm/aaaa" value="{{contato.aniversario}}" required>
           {{#if errors.aniversario}}
-            <div class="alert alert-warning" role="alert">{{errors.aniversario.msg}}</div>
+            <span class="help-block">{{errors.aniversario.msg}}</span>
           {{/if}}
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{#if errors.telefonefixo}} has-error {{/if}}">
       <label for="telefonefixo" class="control-label col-sm-2">Telefone fixo</label>
       <div class="col-sm-10">
         <input type="text" class="form-control telefonefixo" id="telefonefixo" name="telefonefixo"
-          placeholder="(11) 2222-2222" required>
+          placeholder="(00) 2222-2222" value="{{contato.telefonefixo}}" required>
+          {{#if errors.telefonefixo}}
+            <span class="help-block">{{errors.telefonefixo.msg}}</span>
+          {{/if}}
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{#if errors.telefonecelular}} has-error {{/if}}">
       <label for="telefonecelular" class="control-label col-sm-2">Telefone celular</label>
       <div class="col-sm-10">
         <input type="text" class="form-control telefonecelular" id="telefonecelular" name="telefonecelular"
-          placeholder="(11) 99999-9999">
+          placeholder="(00) 9999-9999 ou (00) 99999-9999"  value="{{contato.telefonecelular}}">
+          {{#if errors.telefonecelular}}
+            <span class="help-block">{{errors.telefonecelular.msg}}</span>
+          {{/if}}
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group {{#if errors.telefonecomercial}} has-error {{/if}}">
       <label for="telefonecomercial" class="control-label col-sm-2">Telefone comercial</label>
       <div class="col-sm-10">
         <input type="text" class="form-control telefonecomercial" id="telefonecomercial"
-          name="telefonecomercial" placeholder="(11) 99999-9999">
+          name="telefonecomercial" placeholder="(00) 9999-9999 ou (00) 99999-9999"
+          value="{{contato.telefonecomercial}}">
+          {{#if errors.telefonecomercial}}
+            <span class="help-block">{{errors.telefonecomercial.msg}}</span>
+          {{/if}}
       </div>
     </div>
     <div class="form-group">
@@ -59,7 +73,7 @@
       <div class="col-sm-10">
         <button type="submit" class="btn btn-success">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-          Criar contato</button>
+          {{#if create}}Criar contato{{else}}Atualizar contato{{/if}}</button>
         <a href="/" class="btn btn-danger">
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           Cancelar</a>

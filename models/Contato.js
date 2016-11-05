@@ -30,11 +30,6 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING
         }
       }, {
-        instanceMethods: {
-          dataCadastroFormat: function() {
-            return moment(this.datacadastro).format("DD/MM/YYYY HH:mm");
-          }
-        },
         classMethods: {
           associate: function(models) {
             Contato.belongsTo(models.usuarios, {
@@ -42,10 +37,7 @@ module.exports = function(sequelize, DataTypes) {
             });
           }
         }
-      });
+  });
 
-  Contato.__proto__.aniversarioFormat = function() {
-    return moment(this.aniversario).format("DD/MM/YYYY");
-  }
   return Contato;
 };
