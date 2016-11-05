@@ -37,7 +37,7 @@ exports.save = function(req, res) {
     contato.usuario_id = req.user.id;
 
     contato.save()
-              .then(function() {
+              .then(function(contato) {
                 req.flash("success", "Contato: " + contato.nome + " cadastrado com sucesso!");
                 res.status(200).redirect("/");
               })
