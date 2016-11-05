@@ -80,8 +80,8 @@ app.use(expressValidator({
 load("controllers").then("routers").into(app);
 
 function startApp() {
-  app.listen(config.port, function () {
-      console.log("Server rodando [App: " + config.app.name + "]:[Port: " + config.port +"]");
+  app.listen(process.env.PORT || config.port, function () {
+      console.log("Server rodando [App: " + config.app.name + "]:[Port: " + (process.env.PORT || config.port) +"]");
   });
 }
 
