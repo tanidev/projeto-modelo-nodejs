@@ -39,7 +39,7 @@ var config = {
             user: "glgqsblqunbbbs",
             password: "4AK6BI5zqk9_s_7pOaG63eaBKl",
             options: {
-                host: "ec2-54-235-254-56.compute-1.amazonaws.com:5432",
+                host: "ec2-54-235-254-56.compute-1.amazonaws.com",
                 dialect: "postgres",
                 timezone: "America/Sao_Paulo",
                 define: {
