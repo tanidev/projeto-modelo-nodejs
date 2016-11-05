@@ -50,7 +50,7 @@ app.use(express.static("./public"));
 
 //configure express-flash
 app.use(cookieParser());
-app.use(session({secret: "secret"}));
+app.use(session({secret: "projetomodelo"}));
 app.use(flash());
 app.use(require("./middlewares/capturemessage"));
 
