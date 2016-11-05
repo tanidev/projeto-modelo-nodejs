@@ -1,5 +1,5 @@
 var models = require("../models");
-var moment = require("moment");
+var moment = require("moment-timezone");
 
 exports.show = function(req, res){
   models.contatos.findOne({
@@ -38,7 +38,7 @@ exports.save = function(req, res) {
 
     //FIX Date
     var dateSplit = req.body.aniversario.split("/");
-    contato.aniversario = new Date(dateSplit[2], dateSplit[1]-1, dateSplit[0]);
+    contato.aniversario = dateSplit[2] + "-" + dateSplit[1] + "-" + dateSplit[0];
 
     contato.save()
               .then(function(contato) {
@@ -72,7 +72,7 @@ exports.update = function(req, res) {
 
       //FIX Date
       var dateSplit = req.body.aniversario.split("/");
-      req.body.aniversario = new Date(dateSplit[2], dateSplit[1]-1, dateSplit[0]);
+      req.body.aniversario = dateSplit[2] + "-" + dateSplit[1] + "-" + dateSplit[0];
 
       return contato.update(req.body);
     }).then(function(contato) {
