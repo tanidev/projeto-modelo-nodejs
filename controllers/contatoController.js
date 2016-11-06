@@ -1,5 +1,5 @@
 var models = require("../models");
-var moment = require("moment-timezone");
+var moment = require("moment");
 
 exports.show = function(req, res){
   models.contatos.findOne({
