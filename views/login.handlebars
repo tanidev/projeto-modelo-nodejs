@@ -21,6 +21,12 @@
                       <a href="javascript:void(0)" onclick="window.location.reload()" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
                     </div>
                   {{/if}}
+                  {{#if success}}
+                    <div class="alert alert-success">
+                      <strong>Sucesso!</strong> {{success}}
+                      <a href="javascript:void(0)" onclick="window.location.reload()" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
+                    </div>
+                  {{/if}}
                   <form role="form" action="/login" method="post">
                       <fieldset>
                           <div class="form-group">

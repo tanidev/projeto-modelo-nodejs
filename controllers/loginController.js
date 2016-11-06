@@ -33,7 +33,7 @@ exports.save = function(req, res) {
                 res.redirect("/");
               })
               .catch(function(error) {
-                req.flash("error", "Não foi possivel cadastrar esse contato");
+                req.flash("error", "Não foi possivel criar esta conta");
                 res.redirect("/signup");
               });
   } else {
