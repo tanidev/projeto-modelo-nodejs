@@ -48,7 +48,7 @@ exports.save = function(req, res) {
               .catch(function(error) {
                 console.log(error);
                 req.flash("error", "Não foi possivel cadastrar esse contato");
-                res.status(500).redirect("/contatos/form", {create: true});
+                res.status(500).render("/contatos/form", {create: true});
               });
   } else {
     res.render("contatos/form", {contato: req.body, errors: req.validationErrors(true), create:true});
@@ -81,10 +81,13 @@ exports.update = function(req, res) {
     })
     .catch(function(error) {
       req.flash("error", "Não foi possivel atualizar esse contato");
-      res.status(500).redirect("/contatos/form/", {contato: req.body});
+
+      req.body.id = req.params.id;
+      res.status(500).render("/contatos/form/", {contato: req.body});
     });
 
   } else {
+    req.body.id = req.params.id;
     res.render("contatos/form", {contato: req.body, errors: req.validationErrors(true)});
   }
 
