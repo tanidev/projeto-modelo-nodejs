@@ -15,6 +15,12 @@
                   <h1 class="panel-title"><center>Criar uma conta</center></h1>
               </div>
               <div class="panel-body">
+                  {{#if error}}
+                    <div class="alert alert-danger">
+                      <strong>Atenção!</strong> {{error}}
+                      <a href="javascript:void(0)" onclick="window.location.reload()" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
+                    </div>
+                  {{/if}}
                   <form class="form-horizontal" action="/signup" method="post">
                       <fieldset>
                         <div class="form-group {{#if errors.nome}} has-error {{/if}}">
